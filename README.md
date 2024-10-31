@@ -4,15 +4,15 @@ El emprendimiento familiar "Polipiel" se dedica a la fabricación y venta de pro
 
 Este modelo de base de datos busca organizar y optimizar la gestión de clientes, ventas, productos, materias primas y empleados para facilitar el manejo y control de la información del emprendimiento.
 
-# Primer DER-SQL
+# DER-SQL
 ![image](https://github.com/user-attachments/assets/c1d175a9-6878-4a94-90e6-b361f349ce3d)
 
 
-# DER en WORKBENCH Primera-Entrega-SQL
+# DER EN WORKBENCH
 ![image](https://github.com/user-attachments/assets/4a0f80de-07e0-4573-b264-fdeb58b020b8)
 
 
-## Tablas
+## TABLAS
 
 ### 1. **cliente**
    - **Descripción**: Almacena información de los clientes.
