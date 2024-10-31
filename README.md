@@ -1,11 +1,16 @@
-# DER Primera-Entrega-SQL
+# README - Base de Datos para "Polipiel"
+Descripción General 📋
+El emprendimiento familiar "Polipiel" se dedica a la fabricación y venta de productos personalizados y estándar como manteles, fundas de sillas, paneras, cubre sommier, y otros artículos de decoración, empleando materiales como cuerina, ecocuero, PVC, entre otros. Las ventas se realizan principalmente a través de redes sociales, sitios de e-commerce y WhatsApp. La empresa adquiere materia prima de proveedores locales para su fabricación, y distribuye los productos terminados mediante transportes a sus clientes.
+
+Este modelo de base de datos busca organizar y optimizar la gestión de clientes, ventas, productos, materias primas y empleados para facilitar el manejo y control de la información del emprendimiento.
+
+# Primer DER-SQL
 ![image](https://github.com/user-attachments/assets/c1d175a9-6878-4a94-90e6-b361f349ce3d)
-# DER WORKBENCH Primera-Entrega-SQL
+
+
+# DER en WORKBENCH Primera-Entrega-SQL
 ![image](https://github.com/user-attachments/assets/4a0f80de-07e0-4573-b264-fdeb58b020b8)
 
-# Base de Datos: Polipiel
-
-Este esquema de base de datos está diseñado para una empresa de ventas de productos de polipiel, gestionando clientes, empleados, productos, proveedores, ventas, y stock, así como su historial y logística. Este modelo permite el control y la gestión de ventas, inventario y relaciones comerciales, mejorando la eficiencia y rastreabilidad de los procesos.
 
 ## Tablas
 
