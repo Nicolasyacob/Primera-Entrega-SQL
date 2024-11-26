@@ -61,7 +61,6 @@ Este modelo de base de datos busca organizar y optimizar la gestión de clientes
    - **Columnas**:
      - `id_producto`: INT (PK, AUTO_INCREMENT) - Identificador único del producto.
      - `nombre_producto`: VARCHAR(200) - Nombre del producto.
-     - `color`: VARCHAR(50) - Color del producto.
      - `descripcion`: TEXT - Descripción del producto.
 
 ### 7. **venta**
@@ -113,17 +112,25 @@ Este modelo de base de datos busca organizar y optimizar la gestión de clientes
    - **Columnas**:
      - `id_producto_material`: INT (PK, AUTO_INCREMENT) - Identificador único.
      - `id_producto`: INT (FK) - Referencia al producto.
-     - `cantidad_requerida`: INT - Cantidad requerida del material.
+     - `id_material`: INT (FK) - Referencia al material.
+     - `cantidad_requerida`: INT - Cantidad requerida de materiales usados para el producto.
 
-### 12. **stock**
+### 12. **stock_materiales**
    - **Descripción**: Información del inventario de materiales.
    - **Columnas**:
-     - `id_stock`: INT (PK, AUTO_INCREMENT) - Identificador único del stock.
-     - `id_producto_material`: INT (FK) - Referencia a `producto_material`.
+     - `id_stock_materiales`: INT (PK, AUTO_INCREMENT) - Identificador único del stock del material.
+     - `id_material`: INT (FK) - Referencia al material.
      - `id_empleado`: INT (FK) - Empleado encargado.
      - `id_proveedor`: INT (FK) - Proveedor de material.
      - `cantidad_disponible`: INT - Cantidad disponible en stock.
      - `costo_unitario`: DECIMAL(10,2) - Costo unitario del material.
+    
+### 13. **material**
+   - **Descripción**: Información de los materiales que se usan para los productos.
+   - **Columnas**:
+     - `id_material`: INT (PK, AUTO_INCREMENT) - Identificador único del producto.
+     - `nombre_material`: VARCHAR(200) - Nombre del material.
+     - `color`: VARCHAR(50) - color del material.
 
 ## Relaciones
 
