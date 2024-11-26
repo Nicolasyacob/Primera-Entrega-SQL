@@ -1,4 +1,4 @@
-DROP DATABASE IF	EXISTS polipiel;
+ DROP DATABASE IF	EXISTS polipiel;
 CREATE DATABASE polipiel;
 
 USE polipiel;
@@ -21,7 +21,12 @@ CREATE TABLE cliente(
     PRIMARY KEY(id_pago)
     );
     
-     CREATE TABLE canal_venta(
+    CREATE TABLE transporte (
+    id_transporte INT NOT NULL AUTO_INCREMENT,
+    nombre_empresa VARCHAR(200) NOT NULL,
+    PRIMARY KEY (id_transporte));
+
+    CREATE TABLE canal_venta(
 	id_canal INT NOT NULL AUTO_INCREMENT,
     nombre_canal VARCHAR(200),
     PRIMARY KEY(id_canal)
@@ -37,22 +42,33 @@ CREATE TABLE cliente(
     fecha_ingreso DATE,
     salario DECIMAL(10,2),
     PRIMARY KEY (id_empleado)
-);
+    );
 
-CREATE TABLE transporte (
-    id_transporte INT NOT NULL AUTO_INCREMENT,
-    nombre_empresa VARCHAR(200) NOT NULL,
-    PRIMARY KEY (id_transporte));
- 
+    CREATE TABLE proveedor (
+    id_proveedor INT NOT NULL AUTO_INCREMENT,
+    nombre_proveedor VARCHAR(200) NOT NULL,
+    telefono VARCHAR(50),
+    email VARCHAR(50) UNIQUE, 
+    direccion VARCHAR(50),
+    ciudad VARCHAR(50), 
+    PRIMARY KEY (id_proveedor)
+	);
+
     CREATE TABLE producto (
     id_producto INT NOT NULL AUTO_INCREMENT,
     nombre_producto VARCHAR(200) NOT NULL,
-    color VARCHAR(50),
     descripcion TEXT, 
     PRIMARY KEY (id_producto)
-	);
+    );
 
-CREATE TABLE venta (
+    CREATE TABLE material (
+    id_material INT NOT NULL AUTO_INCREMENT,
+    nombre_material VARCHAR(100) NOT NULL, -- Cuerina, PVC, Tela
+    color VARCHAR(50) NOT NULL,           -- Rojo, Blanco, Verde
+    PRIMARY KEY (id_material)
+);
+
+    CREATE TABLE venta (
     id_venta INT NOT NULL AUTO_INCREMENT,
     id_cliente INT,
     id_empleado INT,
@@ -93,53 +109,26 @@ CREATE TABLE venta (
     FOREIGN KEY (id_venta) REFERENCES venta(id_venta),
     FOREIGN KEY ( id_empleado) REFERENCES empleados(id_empleado)
    );
-
-    CREATE TABLE proveedor (
-    id_proveedor INT NOT NULL AUTO_INCREMENT,
-    nombre_proveedor VARCHAR(200) NOT NULL,
-    telefono VARCHAR(50),
-    email VARCHAR(50) UNIQUE, 
-    direccion VARCHAR(50),
-    ciudad VARCHAR(50), 
-    PRIMARY KEY (id_proveedor)
-	);
-
-CREATE TABLE venta (
-    id_venta INT NOT NULL AUTO_INCREMENT,
-    id_cliente INT,
-    id_empleado INT,
-    id_pago INT,
-    id_canal INT,
-	id_transporte INT,
-    fecha_venta DATE,
-    estado VARCHAR(50),
-    total DECIMAL(10,2),
-    PRIMARY KEY (id_venta),
-    FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
-    FOREIGN KEY (id_empleado) REFERENCES empleados (id_empleado),
-    FOREIGN KEY (id_pago) REFERENCES pago(id_pago),
-    FOREIGN KEY (id_canal) REFERENCES canal_venta (id_canal),
-    FOREIGN KEY (id_transporte) REFERENCES transporte (id_transporte));
-    
+ 
 	CREATE TABLE producto_material (
-	id_producto_material INT NOT NULL AUTO_INCREMENT,
+    id_producto_material INT NOT NULL AUTO_INCREMENT,
     id_producto INT NOT NULL,
-    cantidad_requerida INT,
+    id_material INT NOT NULL,
+    cantidad_requerida INT, -- Cantidad necesaria de ese material para un producto
     PRIMARY KEY (id_producto_material),
-    FOREIGN KEY (id_producto) REFERENCES producto(id_producto));
+    FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
+    FOREIGN KEY (id_material) REFERENCES material(id_material)
+    );
     
-    CREATE TABLE stock (
-    id_stock INT NOT NULL AUTO_INCREMENT,
-    id_producto_material INT NOT NULL,
+    CREATE TABLE stock_materiales (
+    id_stock_material INT NOT NULL AUTO_INCREMENT,
+    id_material INT NOT NULL, -- Relaciona directamente con el material
     id_empleado INT NOT NULL,
     id_proveedor INT,
-    cantidad_disponible INT,
+    cantidad_disponible INT, -- Cuánto stock hay disponible
     costo_unitario DECIMAL(10,2),
-    PRIMARY KEY (id_stock),
-    FOREIGN KEY (id_producto_material) REFERENCES producto_material (id_producto_material),
-    FOREIGN KEY (id_empleado) REFERENCES empleados (id_empleado),
-    FOREIGN KEY (id_proveedor) REFERENCES proveedor(id_proveedor));
-    
-    
-
-        
+    PRIMARY KEY (id_stock_material),
+    FOREIGN KEY (id_material) REFERENCES material(id_material),
+    FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado),
+    FOREIGN KEY (id_proveedor) REFERENCES proveedor(id_proveedor)
+);
