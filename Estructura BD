@@ -1,4 +1,4 @@
- DROP DATABASE IF	EXISTS polipiel;
+DROP DATABASE IF	EXISTS polipiel;
 CREATE DATABASE polipiel;
 
 USE polipiel;
